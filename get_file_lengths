@@ -1,0 +1,13 @@
+#!/bin/bash 
+
+echo "sections/* -diff" >> .gitattributes
+
+outfile=/home/halvard/uio/master/notebooks/lengths.txt
+
+> $outfile
+
+for f in $(ls sections/*.tex); do 
+    git log --stat $f >> $outfile;
+done
+
+sed -i '$d' .gitattributes
